@@ -11,11 +11,6 @@ try:
 
     print("Connected Successfully!")
 
-    cursor=pg.cursor()
-    cursor.execute("SELECT * FROM student")
-    row=cursor.fetchone()
-    print(row)
-
     conn.close()
 
 except Exception as e:
