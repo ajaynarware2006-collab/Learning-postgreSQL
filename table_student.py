@@ -10,10 +10,16 @@ try:
         port=5432
     )
 
-    print("Connected Successfully!")
-
-    conn.close()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM student")
+    rows=cursor.fetchall()
+    for row in rows:
+        print(row)
 
 except Exception as e:
     print(e)
+
+finally:
+    cursor.close()
+    conn.close()
     
