@@ -1,11 +1,6 @@
 import psycopg as pg
 from password import password
-
-def student_dtails(row):
-    print("=========================")
-    print(f"Name       : {row[1]}")
-    print(f"Age        : {row[2]}")
-    print(f"Student ID : {row[0]}")
+from student_details import student_details
 
 conn =pg.connect(
 host="localhost",
@@ -37,7 +32,7 @@ try:
                 print("The table is empty now")
             else:
                 for row in rows:
-                    student_dtails(row)
+                    student_details(row)
 
 
         elif choice=="2":
@@ -45,7 +40,7 @@ try:
                 id=int(input("Enter Sudent ID :"))
                 cursor.execute(f"SELECT * FROM student WHERE student_id={id}")
                 row=cursor.fetchone()
-                student_dtails(row)
+                student_details(row)
 
             except Exception as e:
                 print(e)
@@ -58,7 +53,7 @@ try:
                 print(f"There is no student is older then {age}")
             else:
                 for row in rows:
-                    student_dtails(row)
+                    student_details(row)
 
         elif choice=="4":
             cursor.execute("SELECT COUNT(*) FROM student")
