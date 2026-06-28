@@ -10,36 +10,37 @@ conn =pg.connect(
         port=5432)
 
 cursor=conn.cursor()
+try:
+        while True:
+                print("===========================")
+                print()
+                print("Press 1 to insert data")
+                print("Press 2 to view data")
+                print("Press 3 to exit")
+                print()
+                choice=input("Enter your choice :")
+                if choice=="1":
+                        name=input("Name : ")
+                        age=int(input("Age  :"))
+                        cursor.execute("INSERT INTO student(name , age) VALUES(%s,%s)",(name,age))
+                        conn.commit()
+                        print("Data Inserted successfully")
+                
+                elif choice=="2":
+                        cursor.execute("SELECT * FROM student")
+                        data=cursor.fetchall()
+                        for student in data:
+                                student_details(student)
+                
+                elif choice=="3":
+                        break
 
-while True:
-        print("===========================")
-        print()
-        print("Press 1 to insert data")
-        print("Press 2 to view data")
-        print("Press 3 to exit")
-        print()
-        choice=input("Enter your choice :")
-        if choice=="1":
-                name=input("Name : ")
-                age=int(input("Age  :"))
-                cursor.execute("INSERT INTO student(name , age) VALUES(%s,%s)",(name,age))
-                conn.commit()
-                print("Data Inserted successfully")
-        
-        elif choice=="2":
-                cursor.execute("SELECT * FROM student")
-                data=cursor.fetchall()
-                for students in data:
-                        student_details(students)
-        
-        elif choice=="3":
-                break
-
-        else:
-                print("PLEASE Enter the valid input")
+                else:
+                        print("PLEASE Enter the valid input")
+except Exception as e:
+        print(e)
 
 
-
-
-cursor.close()
-conn.close()
+finally:
+        cursor.close()
+        conn.close()
