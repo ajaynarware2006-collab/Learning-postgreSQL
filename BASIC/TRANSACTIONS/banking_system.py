@@ -1,5 +1,5 @@
 import psycopg as pg
-from password import password
+from BACKEND_DEV.SQL.TRANSACTIONS.password import password
 
 connection=pg.connect(
     host="localhost",
@@ -38,8 +38,6 @@ def check_balance(amount,account_id):
     sender=cursor.fetchone()
     if sender[2]<amount:
         raise Exception("Inefficient Balance")
-
-
 
 try:
     sender=int(input("Enter Sender's account ID : "))

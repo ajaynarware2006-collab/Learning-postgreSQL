@@ -1,6 +1,6 @@
 import psycopg as pg
 from password import password
-from student_details import student_details
+from BACKEND_DEV.SQL.CRUD.student_details import student_details
 
 conn =pg.connect(
 host="localhost",

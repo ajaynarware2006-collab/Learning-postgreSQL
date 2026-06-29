@@ -1,7 +1,7 @@
 import psycopg as pg
 from password import password
-from student_details import student_details
-from connecting_database import connecting
+from BACKEND_DEV.SQL.CRUD.student_details import student_details
+from BACKEND_DEV.SQL.CRUD.connecting_database import connecting
 
 conn , cursor=connecting()
 

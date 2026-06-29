@@ -1,5 +1,5 @@
 import psycopg as pg
-from password import password
+from BACKEND_DEV.SQL.TRANSACTIONS.password import password
 
 try:
     conn =pg.connect(
