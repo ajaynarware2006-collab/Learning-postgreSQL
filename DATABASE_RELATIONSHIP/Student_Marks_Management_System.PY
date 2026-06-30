@@ -24,14 +24,18 @@ def view_students():
 
 def view_marks():
     student_id=int(input("Enter Student id : "))
-    cursor.execute("SELECT * FROM marks WHERE student_id=%s",(student_id,))
-    data=cursor.fetchall()
+    cursor.execute("SELECT students.name,marks.subject,marks.marks FROM students INNER JOIN marks ON students.student_id = marks.student_id WHERE students.student_id =%s;",(student_id,))
 
-    cursor.execute("SELECT * FROM students WHERE student_id=%s",(student_id,))
-    name=cursor.fetchone()[1]
-    print(f"Name --> {name}")
-    for student in data:
-        print(f"{student[1]} -> {student[2]}")
+    rows=cursor.fetchall()
+    if not rows:
+        print("NO marks found")
+        return
+    
+    print("Name",rows[0][0])
+    print()
+    print("SUBJECT      MARKS")
+    for row in rows:
+        print(f"{row[1]}          {row[2]}")
 
 operation={
     "1":insert_student,
@@ -50,8 +54,9 @@ try:
         
         with connection.cursor() as cursor:
             while True:
-
-                print("==============================")
+                print()
+                print("======Student_Marks_Management_System======")
+                print()
                 print("1. Add Student")
                 print("2. Add Marks")
                 print("3. View Students")
