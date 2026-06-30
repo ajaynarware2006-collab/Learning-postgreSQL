@@ -5,7 +5,7 @@ from password import password
 def connecting():
     conn =pg.connect(
         host="localhost",
-        dbname="expense_tracker",
+        dbname="school_mangement",
         user="postgres",
         password=password(),
         port=5432)
